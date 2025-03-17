@@ -12,7 +12,7 @@ val gitVersionCode by lazy {
         commandLine(cmd)
         standardOutput = stdout
     }
-    stdout.toString().trim().toInt()
+    stdout.toString(Charsets.UTF_8).trim().toInt()
 }
 
 // 读取 git 的 commit tag 作为应用的版本名，如果后面
@@ -23,7 +23,7 @@ val gitVersionTag by lazy {
         commandLine(cmd)
         standardOutput = stdout
     }
-    stdout.toString().trim()
+    stdout.toString(Charsets.UTF_8).trim()
 }
 
 android {

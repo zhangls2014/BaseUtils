@@ -8,8 +8,14 @@ import okhttp3.logging.HttpLoggingInterceptor
  *
  * @author zhangls
  */
-class RequestLogger : HttpLoggingInterceptor.Logger {
+class RequestLogger(private val maxLength: Int = 2000) : HttpLoggingInterceptor.Logger {
     override fun log(message: String) {
-        LogUtils.i(message)
+        val msg = if (message.length > maxLength) {
+            // 截断长日志
+            message.substring(0, maxLength) + "...(超长日志内容，已省略)"
+        } else {
+            message
+        }
+        LogUtils.i(msg)
     }
 }
